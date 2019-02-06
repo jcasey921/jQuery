@@ -1,0 +1,76 @@
+<!--PRG/281 - Yining Li
+    Justin Casey
+    Greetings / Events - Week 2
+-->
+<!DOCTYPE html5>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $('#timeCanvas').slideToggle();
+    });
+});
+</script>
+</head>
+<body onload="getTime()">
+<p><b>Local time of day greeting.</b></p>
+<canvas id="timeCanvas" width="300" height="300" style="border:5px solid blue";>
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+<button>Click to close or open greeting graphic.</button>
+<script>
+$(document).ready(function(){
+    $("p").not('#toDay').css("background-color", "lightgreen");
+});
+</script>
+<p id="greeting"></p>
+<p id="toDay" style="color:grey">Click for current day of the week.</p>
+<script>
+var days = [
+    'SUN',
+    'MON',
+    'TUE',
+    'WED',
+    'THU',
+    'FRI',
+    'SAT'
+];
+
+d = new Date();
+x = d.getDay();
+$(document).ready(function(){
+$('#toDay').click(function(){
+        alert(days[x]);
+    });
+});
+</script>
+	
+<script>
+	var c = document.getElementById("timeCanvas");
+	var ctx = c.getContext("2d");
+	ctx.fillRect(0, 0, 300, 300);
+	ctx.font = "30px Verdana";
+	ctx.fillStyle = "orange";
+    ctx.textAlign = "center";
+	ctx.fillText("", c.width/2, c.height/2);
+		
+function getTime() {
+    var time = new Date().getHours();
+    var greeting;
+	
+    if (time < 12) {
+        greeting = alert("Good morning class.");
+		ctx.fillText("Good morning", c.width/2, c.height/2);
+    } else if (time < 17) {
+        greeting = alert("Good afternoon class.");
+		ctx.fillText("Good afternoon", c.width/2, c.height/2);
+    } else {
+        greeting = alert("Good evening class.");
+		ctx.fillText("Good evening", c.width/2, c.height/2);
+    }
+}
+</script>
+</body>
+</html>

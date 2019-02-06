@@ -1,0 +1,155 @@
+<!--PRG/281 - Yining Li
+    Justin Casey
+    IntroToMe / Week 5 Final
+-->
+<!DOCTYPE html5>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</script>
+<style>
+fieldset { 
+	border:2px solid blue;
+}
+legend {
+    display: block;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 2px soild blue;
+}
+body {
+	background-color: grey;
+}
+.audioControls {
+	position: absolute;
+	top: 150px;
+	right: 0px;
+}
+.videoContainer {
+	position: absolute;
+	bottom: 200px;
+	right: 0px;
+}
+.button {
+	position: absolute;
+	top: 610px;
+	left: 100px;
+}
+.animation {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    position: relative;
+    animation-name: squareOne;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+@keyframes squareOne {
+    0%   {bacakground-color:blue; left:0px; top:0px;}
+    25%  {background-color:yellow; left:410px; top:0px;}
+    50%  {background-color:orange; left:410px; top:460px;}
+    75%  {background-color:green; left:0px; top:460px;}
+    100% {background-color:black; left:0px; top:0px;}
+}
+</style>
+<script> 
+$(document).ready(function(){
+    $("button").click(function(){
+        $(".animation").animate({
+            height: 'toggle'
+        });
+    });
+});
+</script>
+</head>
+<body onload="getTime()">
+<p id="greeting"></p>
+<table>
+   <tr>
+      <td>
+         <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
+            <a id="myHeader1" href="javascript:slideonlyone('newboxes1');" >A little about me.</a>
+         </div>
+         <div class="newboxes2" id="newboxes1" style="border: 1px solid black; background-color: lightgrey; display: block;padding: 5px;">
+		 I am married to my beautiful wife of 9 years, Daniella.<br> I am 30 years old and currently make a living doing flooring install.</div>
+      </td>
+      <td>
+         <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
+            <a id="myHeader2" href="javascript:slideonlyone('newboxes2');" >A little more about me.</a>
+         </div>
+         <div class="newboxes2" id="newboxes2" style="border: 1px solid black; background-color: lightgrey; display: none;padding: 5px;">
+		 While growing up I was always interested in and involved with <br>any technology I could get my hands on.</div>
+      </td>
+      <td>
+         <div style="border: 1px solid blue; background-color: #99CCFF; padding: 5px;">
+            <a id="myHeader3" href="javascript:slideonlyone('newboxes3');" >Hobbies and pets.</a>
+         </div>
+         <div class="newboxes2" id="newboxes3" style="border: 1px solid black; background-color: lightgrey; display: none;padding: 5px;">
+		 My hobbies have always been video games, playing guitar,<br> and anything I do with my wife and family. We have 2 cats - Oliver and Huxley.</div>
+      </td>
+   </tr>
+</table>
+<script>
+function slideonlyone(thechosenone) {
+     $('.newboxes2').each(function(index) {
+          if ($(this).attr("id") == thechosenone) {
+               $(this).slideDown(200);
+          }
+          else {
+               $(this).slideUp(600);
+          }
+     });
+}
+</script>
+<div class="animation"></div>
+<canvas id="introCanvas" width="400" height="400" style="border:5px solid blue";>
+</canvas>
+<script>
+	var c = document.getElementById("introCanvas");
+	var ctx = c.getContext("2d");
+	ctx.fillRect(0, 0, 400, 400);
+	ctx.font = "20px Verdana";
+	ctx.fillStyle = "orange";
+    ctx.textAlign = "center";
+	ctx.fillText("", c.width/2, c.height/2);
+		
+function getTime() {
+    var time = new Date().getHours();
+    var greeting;
+	
+    if (time < 12) {
+        greeting = alert("Good morning class.");
+		ctx.fillText("Good morning. I am Justin Casey.", c.width/2, c.height/2);
+    } else if (time < 17) {
+        greeting = alert("Good afternoon class.");
+		ctx.fillText("Good afternoon. I am Justin Casey.", c.width/2, c.height/2);
+    } else {
+        greeting = alert("Good evening class.");
+		ctx.fillText("Good evening. I am Justin Casey.", c.width/2, c.height/2);
+    }
+}
+</script>
+<div class="audioControls">
+<audio controls>
+  <source src="ueffects__guitar-background-sample.wav" type="audio/wav">
+  <source src="ueffects__guitar-background-sample.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+</div>
+<audio id="buttonClick">
+<source src="drminky__retro-coin-collect.wav" type="audio/wav">
+<source src="drminky__retro-coin-collect.mp3" type="audio/mpeg">
+</audio>
+<button class="button" onclick="document.getElementById('buttonClick').play()">Click to hide/unhide animation.</button>
+<div class="videoContainer">
+<fieldset>
+<legend>Below is a video of Huxley.</legend>
+<video class="Huxley" width="500" controls>
+<source src="Huxley.mp4" type="video/mp4">
+<source src="Huxley.ogv" type="video/ogv">  
+  Your browser does not support HTML5 video.
+</video>
+</fieldset>
+</div>
+</body>
+</html>

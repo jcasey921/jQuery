@@ -1,0 +1,39 @@
+<!--PRG/281 - Yining Li
+    Justin Casey
+    Canvas Drawing - Week 1
+-->
+<!DOCTYPE html5>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+	<body style="background-color: grey";>
+<canvas id="myDrawing" width="500" height="500" style="border:5px solid blue";>
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+		<script>
+      var context = $('#myDrawing')[0].getContext("2d");
+ 
+      var fillColor = context.createLinearGradient(150,150, 300,300);
+	  
+      fillColor.addColorStop(0.30,"red");
+      fillColor.addColorStop(0.60,"black");
+      fillColor.addColorStop(0.90,"green");
+      fillColor.addColorStop(0.100,"yellow");
+      
+	  context.fillStyle= fillColor;
+      context.fillRect(150,150,300,300);
+	  
+	  var context = $('#myDrawing')[0].getContext("2d");
+      context.beginPath();
+      context.arc(70,70,50,0,2 * Math.PI, true)
+      context.fill();
+	 
+	  var context = $('#myDrawing')[0].getContext("2d");
+	  context.fillStyle = 'black';
+	  context.beginPath();
+	  context.arc(100,100,70,0,2 * Math.PI, true)
+	  context.fill();
+		</script>
+	</body>
+</html>
